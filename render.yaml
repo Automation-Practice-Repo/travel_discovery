@@ -3,8 +3,9 @@ services:
   - type: web
     name: tourist-discovery-backend
     env: docker
-    dockerfilePath: Dockerfile
+    dockerfilePath: backend/Dockerfile
     dockerContext: backend
+    dockerCommand: sh -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"
     plan: free
     envVars:
       - key: DATABASE_URL
